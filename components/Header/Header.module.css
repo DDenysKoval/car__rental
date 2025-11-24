@@ -1,0 +1,25 @@
+.header {
+  background-color: #f2f4f7;
+}
+
+.navwrapper {
+  height: 68px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #f2f4f7;
+  background-color: #f2f4f7;
+  justify-content: space-between;
+}
+
+.navlist {
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #101828;
+}
+.active {
+  color: #0b44cd;
+}

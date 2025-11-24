@@ -1,0 +1,34 @@
+.cataloglist {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 48px 32px;
+}
+
+.catalogListItem {
+  width: calc((100% - 96px) / 4);
+}
+
+.carTitlePriceWrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.carTitle {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #101828;
+}
+.span {
+  color: #3470ff;
+}
+
+.text {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.33;
+  color: #8d929a;
+}

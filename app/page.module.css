@@ -1,0 +1,31 @@
+.sectionWrapper {
+  background-image: url("/Hero@1x.webp");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.heroWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 440px 0 60px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 1.2;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.subtitle {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 40px;
+}
