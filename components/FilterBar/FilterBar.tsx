@@ -3,10 +3,24 @@
 import { useId } from "react";
 import css from "./FilterBar.module.css";
 import Button from "../ButtonLink/Button";
-import { Form, Formik } from "formik";
+import { Form, Formik, FormikHelpers } from "formik";
 import { fetchBrands } from "@/libs/api/clientApi";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import Select from "react-select";
+
+interface SearchFormValues {
+  brand: string;
+  price: number;
+  mileageFrom: number;
+  mileageTo: number;
+}
+
+const initialValues: SearchFormValues = {
+  brand: "",
+  price: 0,
+  mileageFrom: 0,
+  mileageTo: 0,
+};
 
 const FilterBar = () => {
   const fieldId = useId();
@@ -17,21 +31,34 @@ const FilterBar = () => {
     placeholderData: keepPreviousData,
   });
 
-  const handleSubmit = () => {};
+  const handleSubmit = (
+    values: SearchFormValues,
+    actions: FormikHelpers<SearchFormValues>
+  ) => {
+    actions.resetForm();
+  };
+
+  const handleClick = () => {};
 
   return (
-    <Formik initialValues={{}} onSubmit={() => {}}>
-      <Form className={css.form}>
-        <div className={css.formWrapper}>
-          <label className={css.title} htmlFor={`${fieldId}-brand`}>
-            Car brand
-          </label>
-          <div className={css.selectWrapper}>
+    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      {({ setFieldValue, values }) => (
+        <Form className={css.form}>
+          <div className={css.formWrapper}>
+            <label className={css.title} htmlFor={`${fieldId}-brand`}>
+              Car brand
+            </label>
             <Select
+              name="brand"
               instanceId="brand"
               options={data?.map((brand) => ({ value: brand, label: brand }))}
               placeholder="Choose a brand"
-              classNamePrefix="customSelect"
+              value={
+                data
+                  ?.map((brand) => ({ value: brand, label: brand }))
+                  .find((opt) => opt.value === values.brand) || null
+              }
+              onChange={(option) => setFieldValue("brand", option?.value)}
               styles={{
                 control: (base, state) => ({
                   ...base,
@@ -75,13 +102,12 @@ const FilterBar = () => {
               }}
             />
           </div>
-        </div>
-        <div className={css.formWrapper}>
-          <label className={css.title} htmlFor={`${fieldId}-price`}>
-            Price/ 1 hour
-          </label>
-          <div className={css.selectWrapper}>
+          <div className={css.formWrapper}>
+            <label className={css.title} htmlFor={`${fieldId}-price`}>
+              Price/ 1 hour
+            </label>
             <Select
+              name="price"
               instanceId="price"
               options={[
                 { value: 30, label: 30 },
@@ -92,6 +118,12 @@ const FilterBar = () => {
                 { value: 80, label: 80 },
               ]}
               placeholder="Choose a price"
+              value={
+                values.price
+                  ? { value: values.price, label: values.price }
+                  : null
+              }
+              onChange={(option) => setFieldValue("price", option?.value)}
               formatOptionLabel={(option, { context }) => {
                 if (context === "value") {
                   return `To $${option.label}`; // додаємо кастомний текст/емодзі
@@ -141,142 +173,165 @@ const FilterBar = () => {
               }}
             />
           </div>
-        </div>
-        <div className={css.formWrapper}>
-          <label className={css.title} htmlFor={`${fieldId}-mileage`}>
-            Сar mileage / km
-          </label>
-          <div className={css.mileageWrapper}>
-            <Select
-              instanceId="mileage-from"
-              options={[
-                { value: "2,000", label: "2,000" },
-                { value: "3,000", label: "3,000" },
-                { value: "4,000", label: "4,000" },
-                { value: "5,000", label: "5,000" },
-                { value: "6,000", label: "6,000" },
-                { value: "7,000", label: "7,000" },
-              ]}
-              placeholder="From"
-              formatOptionLabel={(option, { context }) => {
-                if (context === "value") {
-                  return `From ${option.label}km`; // додаємо кастомний текст/емодзі
+
+          <div className={css.formWrapper}>
+            <label className={css.title} htmlFor={`${fieldId}-mileage`}>
+              Сar mileage / km
+            </label>
+            <div className={css.mileageWrapper}>
+              <Select
+                name="mileageFrom"
+                instanceId="mileage-from"
+                options={[
+                  { value: 2000, label: "2,000" },
+                  { value: 3000, label: "3,000" },
+                  { value: 4000, label: "4,000" },
+                  { value: 5000, label: "5,000" },
+                  { value: 6000, label: "6,000" },
+                  { value: 7000, label: "7,000" },
+                ]}
+                placeholder="From"
+                formatOptionLabel={(option, { context }) => {
+                  if (context === "value") {
+                    return `From ${option.label}km`; // додаємо кастомний текст/емодзі
+                  }
+                  return option.label;
+                }}
+                value={
+                  values.mileageFrom
+                    ? {
+                        value: values.mileageFrom,
+                        label: values.mileageFrom.toLocaleString(),
+                      }
+                    : null
                 }
-                return option.label;
-              }}
-              styles={{
-                control: (base, state) => ({
-                  ...base,
-                  backgroundColor: "#f7f7f7",
-                  borderRadius: "12px 0 0 12px",
-                  border: state.isFocused ? "none" : "none",
-                  borderRight: "1px solid #dadde1",
-                  boxShadow: "none",
-                  height: "44px",
-                  width: "160px",
-                  padding: "2px 8px",
-                }),
-                option: (base, state) => ({
-                  ...base,
-                  padding: "8px 12px",
-                  backgroundColor: "white",
-                  cursor: "pointer",
-                  color: state.isFocused ? "#101828" : "#8d929a",
-                }),
-                menu: (base) => ({
-                  ...base,
-                  backgroundColor: "#ffffff",
-                  borderRadius: 12,
-                  boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
-                  zIndex: 9999,
-                }),
-                menuList: (base) => ({
-                  ...base,
-                  maxHeight: 310,
-                  overflowY: "auto",
-                  padding: 0,
-                  scrollbarColor: "#dadde1 #fff",
-                }),
-                dropdownIndicator: (base) => ({
-                  ...base,
-                  color: "#555",
-                  display: "none",
-                }),
-                indicatorSeparator: (base) => ({
-                  ...base,
-                  display: "none",
-                }),
-              }}
-            />
-            <Select
-              instanceId="mileage-to"
-              options={[
-                { value: "2,000", label: "2,000" },
-                { value: "3,000", label: "3,000" },
-                { value: "4,000", label: "4,000" },
-                { value: "5,000", label: "5,000" },
-                { value: "6,000", label: "6,000" },
-                { value: "7,000", label: "7,000" },
-              ]}
-              placeholder="To"
-              formatOptionLabel={(option, { context }) => {
-                if (context === "value") {
-                  return `To ${option.label}km`; // додаємо кастомний текст/емодзі
+                onChange={(option) =>
+                  setFieldValue("mileageFrom", option?.value)
                 }
-                return option.label;
-              }}
-              styles={{
-                control: (base, state) => ({
-                  ...base,
-                  backgroundColor: "#f7f7f7",
-                  borderRadius: "0 12px 12px 0",
-                  border: state.isFocused ? "none" : "none",
-                  boxShadow: "none",
-                  height: "44px",
-                  width: "160px",
-                  padding: "2px 8px",
-                }),
-                option: (base, state) => ({
-                  ...base,
-                  padding: "8px 12px",
-                  backgroundColor: "white",
-                  cursor: "pointer",
-                  color: state.isFocused ? "#101828" : "#8d929a",
-                }),
-                menu: (base) => ({
-                  ...base,
-                  backgroundColor: "#ffffff",
-                  borderRadius: 12,
-                  boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
-                  zIndex: 9999,
-                }),
-                menuList: (base) => ({
-                  ...base,
-                  maxHeight: 310,
-                  overflowY: "auto",
-                  padding: 0,
-                  scrollbarColor: "#dadde1 #fff",
-                }),
-                dropdownIndicator: (base) => ({
-                  ...base,
-                  color: "#555",
-                  display: "none",
-                }),
-                indicatorSeparator: (base) => ({
-                  ...base,
-                  display: "none",
-                }),
-              }}
-            />
+                styles={{
+                  control: (base, state) => ({
+                    ...base,
+                    backgroundColor: "#f7f7f7",
+                    borderRadius: "12px 0 0 12px",
+                    border: state.isFocused ? "none" : "none",
+                    borderRight: "1px solid #dadde1",
+                    boxShadow: "none",
+                    height: "44px",
+                    width: "160px",
+                    padding: "2px 8px",
+                  }),
+                  option: (base, state) => ({
+                    ...base,
+                    padding: "8px 12px",
+                    backgroundColor: "white",
+                    cursor: "pointer",
+                    color: state.isFocused ? "#101828" : "#8d929a",
+                  }),
+                  menu: (base) => ({
+                    ...base,
+                    backgroundColor: "#ffffff",
+                    borderRadius: 12,
+                    boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+                    zIndex: 9999,
+                  }),
+                  menuList: (base) => ({
+                    ...base,
+                    maxHeight: 310,
+                    overflowY: "auto",
+                    padding: 0,
+                    scrollbarColor: "#dadde1 #fff",
+                  }),
+                  dropdownIndicator: (base) => ({
+                    ...base,
+                    color: "#555",
+                    display: "none",
+                  }),
+                  indicatorSeparator: (base) => ({
+                    ...base,
+                    display: "none",
+                  }),
+                }}
+              />
+              <Select
+                name="mileageTo"
+                instanceId="mileage-to"
+                options={[
+                  { value: 2000, label: "2,000" },
+                  { value: 3000, label: "3,000" },
+                  { value: 4000, label: "4,000" },
+                  { value: 5000, label: "5,000" },
+                  { value: 6000, label: "6,000" },
+                  { value: 7000, label: "7,000" },
+                ]}
+                placeholder="To"
+                formatOptionLabel={(option, { context }) => {
+                  if (context === "value") {
+                    return `To ${option.label}km`; // додаємо кастомний текст/емодзі
+                  }
+                  return option.label;
+                }}
+                value={
+                  values.mileageTo
+                    ? {
+                        value: values.mileageTo,
+                        label: values.mileageTo.toLocaleString(),
+                      }
+                    : null
+                }
+                onChange={(option) => setFieldValue("mileageTo", option?.value)}
+                styles={{
+                  control: (base, state) => ({
+                    ...base,
+                    backgroundColor: "#f7f7f7",
+                    borderRadius: "0 12px 12px 0",
+                    border: state.isFocused ? "none" : "none",
+                    boxShadow: "none",
+                    height: "44px",
+                    width: "160px",
+                    padding: "2px 8px",
+                  }),
+                  option: (base, state) => ({
+                    ...base,
+                    padding: "8px 12px",
+                    backgroundColor: "white",
+                    cursor: "pointer",
+                    color: state.isFocused ? "#101828" : "#8d929a",
+                  }),
+                  menu: (base) => ({
+                    ...base,
+                    backgroundColor: "#ffffff",
+                    borderRadius: 12,
+                    boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+                    zIndex: 9999,
+                  }),
+                  menuList: (base) => ({
+                    ...base,
+                    maxHeight: 310,
+                    overflowY: "auto",
+                    padding: 0,
+                    scrollbarColor: "#dadde1 #fff",
+                  }),
+                  dropdownIndicator: (base) => ({
+                    ...base,
+                    color: "#555",
+                    display: "none",
+                  }),
+                  indicatorSeparator: (base) => ({
+                    ...base,
+                    display: "none",
+                  }),
+                }}
+              />
+            </div>
           </div>
-        </div>
-        <Button
-          text="Search"
-          width={156}
-          onClick={handleSubmit}
-          type="submit"
-        />
-      </Form>
+          <Button
+            text="Search"
+            width={156}
+            onClick={handleClick}
+            type="submit"
+          />
+        </Form>
+      )}
     </Formik>
   );
 };

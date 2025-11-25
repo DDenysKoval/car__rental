@@ -8,9 +8,25 @@ export interface AllCarsHttpResponse {
   totalPages: number,
 }
 
-export const fetchAllCars = async () => {
+export const fetchAllCars = async (
+  brand: string,
+  rentalPrice: number,
+  minMileage: number,
+  maxMileage: number,
+  page: number,
+  limit: number) => {
   try {
-    const response = await nextServer.get<AllCarsHttpResponse>("/cars");
+    const response = await nextServer.get<AllCarsHttpResponse>("/cars", {
+      params:
+      {
+        brand,
+        rentalPrice,
+        minMileage,
+        maxMileage,
+        page,
+        limit
+      }
+    });
     return response.data;
   } catch {
     throw new Error("Fetch cars failed");

@@ -2,10 +2,27 @@ import { NextRequest, NextResponse } from "next/server";
 import { api } from "../api";
 import { isAxiosError } from "axios";
 import { logErrorResponse } from "../_utils/utils";
+import { NextURL } from "next/dist/server/web/next-url";
+
 
 export async function GET(request: NextRequest) {
   try {
-    const responce = await api.get("/cars")
+    const brand = request.nextUrl.searchParams.get("brand") ?? "";
+    const page = Number(request.nextUrl.searchParams.get("page") ?? "");
+    const rentalPrice = Number(request.nextUrl.searchParams.get("rentalPrice") ?? "");
+    const minMileage = Number(request.nextUrl.searchParams.get("minMileage") ?? "");
+    const maxMileage = Number(request.nextUrl.searchParams.get("maxMileage") ?? "");
+
+    const responce = await api.get("/cars",{
+      params:
+      {
+        brand,
+        rentalPrice,
+        minMileage,
+        maxMileage,
+        page,
+      }
+    })
     console.log(responce);
     
     return NextResponse.json(responce.data, {status:responce.status})
