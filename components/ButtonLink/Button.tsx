@@ -4,18 +4,27 @@ import css from "./Button.module.css";
 interface ButtonProps {
   text: string;
   width: number;
-  onSubmit: () => void;
+  onClick: () => void;
+  type: "submit" | "button";
 }
 
-const ButtonComp = ({ text, width, onSubmit }: ButtonProps) => {
+const ButtonComp = ({ text, width, onClick, type }: ButtonProps) => {
   const btnClassName = clsx(css.btn, width === 276 ? css.big : css.small);
+  const whiteBtnClassName = clsx(
+    css.whitebtn,
+    width === 276 ? css.big : css.small
+  );
 
   const handleSubmit = () => {
-    onSubmit();
+    onClick();
   };
 
   return (
-    <button className={btnClassName} type="submit" onSubmit={handleSubmit}>
+    <button
+      className={type === "button" ? whiteBtnClassName : btnClassName}
+      type={type}
+      onSubmit={handleSubmit}
+    >
       {text}
     </button>
   );

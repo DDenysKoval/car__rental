@@ -3,4 +3,24 @@
   font-size: 12px;
   line-height: 1.33;
   color: #8d929a;
+  margin-bottom: 8px;
+}
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  justify-content: center;
+  margin-bottom: 56px;
+  padding-top: 84px;
+  gap: 16px;
+}
+
+.mileageWrapper {
+  display: flex;
+  flex-direction: row;
 }

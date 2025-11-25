@@ -10,6 +10,29 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: background-color 300ms ease-in-out;
+  font-family: "Manrope", sans-serif;
+}
+
+.whitebtn {
+  border-radius: 12px;
+  height: 44px;
+  background-color: transparent;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #101828;
+  border: 1px solid #3470ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: border 300ms ease-in-out;
+  font-family: "Manrope", sans-serif;
+  margin: 0 auto;
+}
+
+.whitebtn:hover {
+  border: 1px solid #0b44cd;
 }
 
 .big {

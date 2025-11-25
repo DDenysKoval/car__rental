@@ -3,6 +3,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 48px 32px;
+  margin-bottom: 80px;
 }
 
 .catalogListItem {
@@ -21,6 +22,7 @@
   font-size: 16px;
   line-height: 1.25;
   color: #101828;
+  font-family: "Manrope", sans-serif;
 }
 .span {
   color: #3470ff;
@@ -31,4 +33,22 @@
   font-size: 12px;
   line-height: 1.33;
   color: #8d929a;
+  margin-bottom: 4px;
+  font-family: "Manrope", sans-serif;
+}
+.text:last-child {
+  margin-bottom: 0;
+}
+
+.overwievWrapper {
+  margin-bottom: 32px;
+}
+
+.imageWrapper {
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.wrapper {
+  padding-bottom: 124px;
 }
