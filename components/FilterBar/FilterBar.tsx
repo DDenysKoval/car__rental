@@ -8,7 +8,7 @@ import { fetchBrands } from "@/libs/api/clientApi";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import Select from "react-select";
 
-interface SearchFormValues {
+export interface SearchFormValues {
   brand: string;
   price: number;
   mileageFrom: number;
@@ -22,10 +22,14 @@ const initialValues: SearchFormValues = {
   mileageTo: 0,
 };
 
-const FilterBar = () => {
+interface FilterBarProps {
+  onSearch: (values: SearchFormValues) => void;
+}
+
+const FilterBar = ({ onSearch }: FilterBarProps) => {
   const fieldId = useId();
 
-  const { data, isLoading, isSuccess } = useQuery({
+  const { data } = useQuery({
     queryKey: ["brands"],
     queryFn: () => fetchBrands(),
     placeholderData: keepPreviousData,
@@ -35,7 +39,7 @@ const FilterBar = () => {
     values: SearchFormValues,
     actions: FormikHelpers<SearchFormValues>
   ) => {
-    actions.resetForm();
+    onSearch(values);
   };
 
   const handleClick = () => {};
@@ -89,6 +93,7 @@ const FilterBar = () => {
                   maxHeight: 310,
                   overflowY: "auto",
                   padding: 0,
+                  borderRadius: 12,
                   scrollbarColor: "#dadde1 #fff",
                 }),
                 dropdownIndicator: (base) => ({
@@ -161,6 +166,7 @@ const FilterBar = () => {
                   overflowY: "auto",
                   padding: 0,
                   scrollbarColor: "#dadde1 #fff",
+                  borderRadius: 12,
                 }),
                 dropdownIndicator: (base) => ({
                   ...base,
@@ -240,6 +246,7 @@ const FilterBar = () => {
                     overflowY: "auto",
                     padding: 0,
                     scrollbarColor: "#dadde1 #fff",
+                    borderRadius: 12,
                   }),
                   dropdownIndicator: (base) => ({
                     ...base,
@@ -310,6 +317,7 @@ const FilterBar = () => {
                     overflowY: "auto",
                     padding: 0,
                     scrollbarColor: "#dadde1 #fff",
+                    borderRadius: 12,
                   }),
                   dropdownIndicator: (base) => ({
                     ...base,

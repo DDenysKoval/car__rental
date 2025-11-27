@@ -15,15 +15,11 @@ const ButtonComp = ({ text, width, onClick, type }: ButtonProps) => {
     width === 276 ? css.big : css.small
   );
 
-  const handleSubmit = () => {
-    onClick();
-  };
-
   return (
     <button
       className={type === "button" ? whiteBtnClassName : btnClassName}
       type={type}
-      onSubmit={handleSubmit}
+      onClick={onClick}
     >
       {text}
     </button>

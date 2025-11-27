@@ -2,8 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { api } from "../api";
 import { isAxiosError } from "axios";
 import { logErrorResponse } from "../_utils/utils";
-import { NextURL } from "next/dist/server/web/next-url";
-
+import { Car } from "@/types/cars";
 
 export async function GET(request: NextRequest) {
   try {
@@ -12,20 +11,25 @@ export async function GET(request: NextRequest) {
     const rentalPrice = Number(request.nextUrl.searchParams.get("rentalPrice") ?? "");
     const minMileage = Number(request.nextUrl.searchParams.get("minMileage") ?? "");
     const maxMileage = Number(request.nextUrl.searchParams.get("maxMileage") ?? "");
+    const limit = Number(request.nextUrl.searchParams.get("limit") ?? 12)
 
-    const responce = await api.get("/cars",{
+    const response = await api.get("/cars",{
       params:
       {
-        brand,
-        rentalPrice,
-        minMileage,
-        maxMileage,
+        ...(brand && { brand }),
         page,
+        limit,
       }
     })
-    console.log(responce);
-    
-    return NextResponse.json(responce.data, {status:responce.status})
+    const cars: Car[] = response.data.cars ?? [];
+    const filteredRentalCars = cars.filter((car: Car) =>
+      (!rentalPrice || car.rentalPrice <= rentalPrice) &&
+      (!minMileage || car.mileage >= minMileage) &&
+      (!maxMileage || car.mileage <= maxMileage)
+    );
+    response.data.cars = filteredRentalCars
+
+    return NextResponse.json(response.data ,  {status:response.status})
   } catch (error) {
     if (isAxiosError(error)) {
       logErrorResponse(error.response?.data);

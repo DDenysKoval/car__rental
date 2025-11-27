@@ -9,7 +9,6 @@ interface CatalogProps {
 }
 
 const Catalog = ({ cars }: CatalogProps) => {
-  const handleClick = () => {};
   return (
     <div className={css.wrapper}>
       <ul className={css.cataloglist}>
@@ -34,7 +33,7 @@ const Catalog = ({ cars }: CatalogProps) => {
             <div className={css.overwievWrapper}>
               <p
                 className={css.text}
-              >{`${car.address.replace(/^[^,]*,/, "")} | ${car.rentalCompany} |`}</p>
+              >{`${car.address.replace(/^[^,]*,/, "").replace(", ", " | ")} | ${car.rentalCompany} |`}</p>
               <p className={css.text}>{`${car.type} | ${car.mileage}km`}</p>
             </div>
             <LinkComp
@@ -45,12 +44,6 @@ const Catalog = ({ cars }: CatalogProps) => {
           </li>
         ))}
       </ul>
-      <ButtonComp
-        text="Load more"
-        width={156}
-        type="button"
-        onClick={handleClick}
-      />
     </div>
   );
 };

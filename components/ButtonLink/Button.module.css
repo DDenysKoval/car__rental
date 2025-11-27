@@ -12,6 +12,7 @@
   align-items: center;
   transition: background-color 300ms ease-in-out;
   font-family: "Manrope", sans-serif;
+  cursor: pointer;
 }
 
 .whitebtn {
@@ -29,6 +30,7 @@
   transition: border 300ms ease-in-out;
   font-family: "Manrope", sans-serif;
   margin: 0 auto;
+  cursor: pointer;
 }
 
 .whitebtn:hover {

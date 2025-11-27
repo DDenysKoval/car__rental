@@ -3,7 +3,6 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 48px 32px;
-  margin-bottom: 80px;
 }
 
 .catalogListItem {
@@ -50,5 +49,5 @@
 }
 
 .wrapper {
-  padding-bottom: 124px;
+  padding-bottom: 80px;
 }
