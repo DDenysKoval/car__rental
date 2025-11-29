@@ -1,5 +1,11 @@
+import { Metadata } from "next";
 import css from "./page.module.css";
 import LinkComp from "@/components/ButtonLink/Link";
+
+export const metadata: Metadata = {
+  title: "Rental Car",
+  description: "Car Rent Service",
+};
 
 export default function Home() {
   const buttonText = "View Catalog";

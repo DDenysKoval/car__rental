@@ -7,10 +7,16 @@ import {
 } from "@tanstack/react-query";
 import css from "./CatalogDetails.module.css";
 import { Toaster } from "react-hot-toast";
+import { Metadata } from "next";
 
 interface Props {
   params: Promise<{ id: string }>;
 }
+
+export const metadata: Metadata = {
+  title: "Selected Car Details",
+  description: "Select Car Details",
+};
 
 const CatalogDetailsPage = async ({ params }: Props) => {
   const { id } = await params;
