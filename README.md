@@ -1,28 +1,30 @@
-# car__rental
+car__rental
 
-## Опис
-car__rental — веб-додаток для прокату автомобілів. Користувачі можуть переглядати доступні авто, бронювати їх, а адміністратори — керувати автопарком і замовленнями.
+Description
+car__rental is a web application for car rental. Users can browse available cars, make bookings, and administrators can manage the car fleet and reservations.
 
-## Основні функції
-- Перегляд списку автомобілів
-- Пошук та фільтрація авто за параметрами
-- Бронювання автомобіля на обрані дати
-- Управління автопарком для адміністратора
+Main Features
+- View the list of available cars
+- Search and filter cars by different parameters
+- Book a car for selected dates
+- Add favorite cars to a personal list
 
-## Встановлення
-1. Склонуй репозиторій:
+Installation
+1. Clone the repository:
+
 git clone https://github.com/DDenysKoval/car__rental.git
 
-2. Перейди в папку проєкту та встанови залежності:
+2. Navigate to the project folder and install dependencies:
+
   cd car__rental
   npm install
 
-Використання
-Запуск у режимі розробки:
+Usage:
+Run the application in development mode:
 
 npm run dev
 
-Автор
+Author:
 
-Денис Коваль
+Denys Koval
 https://github.com/DDenysKoval
