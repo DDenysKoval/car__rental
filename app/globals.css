@@ -1,4 +1,5 @@
 @import "modern-normalize";
+@import "flatpickr/dist/flatpickr.min.css";
 
 html,
 body {
@@ -7,8 +8,9 @@ body {
 }
 
 body {
-  color: var(--foreground);
+  color: #101828;
   background-color: #fff;
+  font-family: var(--font-manrope-sans);
 }
 
 * {

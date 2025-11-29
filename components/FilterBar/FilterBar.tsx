@@ -42,8 +42,6 @@ const FilterBar = ({ onSearch }: FilterBarProps) => {
     onSearch(values);
   };
 
-  const handleClick = () => {};
-
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       {({ setFieldValue, values }) => (
@@ -332,12 +330,7 @@ const FilterBar = ({ onSearch }: FilterBarProps) => {
               />
             </div>
           </div>
-          <Button
-            text="Search"
-            width={156}
-            onClick={handleClick}
-            type="submit"
-          />
+          <Button text="Search" width={156} type="submit" />
         </Form>
       )}
     </Formik>

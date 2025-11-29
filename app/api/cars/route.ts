@@ -17,17 +17,14 @@ export async function GET(request: NextRequest) {
       params:
       {
         ...(brand && { brand }),
+        ...(rentalPrice && { rentalPrice }),
+        ...(minMileage && { minMileage }),
+        ...(maxMileage && { maxMileage }),
         page,
         limit,
       }
     })
-    const cars: Car[] = response.data.cars ?? [];
-    const filteredRentalCars = cars.filter((car: Car) =>
-      (!rentalPrice || car.rentalPrice <= rentalPrice) &&
-      (!minMileage || car.mileage >= minMileage) &&
-      (!maxMileage || car.mileage <= maxMileage)
-    );
-    response.data.cars = filteredRentalCars
+    
 
     return NextResponse.json(response.data ,  {status:response.status})
   } catch (error) {

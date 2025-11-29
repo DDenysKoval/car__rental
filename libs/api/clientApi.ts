@@ -13,7 +13,7 @@ export const fetchAllCars = async (
   rentalPrice: number,
   minMileage: number,
   maxMileage: number,
-  page: number,
+  page:unknown,
   limit: number) => {
   try {
     const response = await nextServer.get<AllCarsHttpResponse>("/cars", {
@@ -33,15 +33,6 @@ export const fetchAllCars = async (
   }
 }
 
-export const fetchCarById = async (carId:number) => {
-  try {
-    const response = await nextServer.get<Car>(`/cars/${carId}`)
-    return response.data
-  } catch {
-    throw new Error("Could'n fetch car details")
-  }
-}
-
 export const fetchBrands = async () => { 
   try {
     const response = await nextServer.get<string[]>("/brands")
@@ -50,3 +41,12 @@ export const fetchBrands = async () => {
     throw new Error("Fetch brands failed")
   }
 };
+
+export const fetchCarById = async (carId:string) => {
+  try {
+    const response = await nextServer.get<Car>(`/cars/${carId}`)
+    return response.data
+  } catch {
+    throw new Error("Could'n fetch car details")
+  }
+}

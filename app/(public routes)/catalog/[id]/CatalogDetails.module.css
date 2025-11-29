@@ -1,0 +1,103 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 72px;
+}
+
+.span {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #8d929a;
+  margin-bottom: 8px;
+}
+
+.section {
+  padding: 84px 0 104px;
+}
+
+.image {
+  border-radius: 19px;
+  margin-bottom: 40px;
+}
+
+.carTitle {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33;
+  color: #101828;
+  margin-bottom: 8px;
+}
+
+.addressWrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.carAddress {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #101828;
+}
+
+.carPrice {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.33;
+  color: #3470ff;
+  margin-bottom: 32px;
+}
+
+.carDescription {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #101828;
+}
+
+.carTitleinfoWrapper {
+  margin-bottom: 68px;
+}
+
+.listItemTitle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  color: #101828;
+  margin-bottom: 20px;
+}
+
+.subList {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #101828;
+  gap: 16px;
+}
+
+.icon {
+  margin-right: 8px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 110px;
+}
+
+.inputWrapper {
+  position: relative;
+}
+.error {
+  position: absolute;
+  bottom: 3px;
+  left: 0;
+  color: #e11d48;
+  font-size: 11px;
+  line-height: 1;
+}

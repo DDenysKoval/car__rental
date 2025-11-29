@@ -46,8 +46,23 @@
 .imageWrapper {
   overflow: hidden;
   margin-bottom: 16px;
+  border-radius: 12px;
+  position: relative;
 }
 
 .wrapper {
   padding-bottom: 80px;
+}
+
+.iconHeart {
+  position: absolute;
+  z-index: 998;
+  top: 16px;
+  right: 16px;
+  background-color: transparent;
+  border: none;
+}
+
+.iconHeart:hover {
+  stroke: #3470ff;
 }

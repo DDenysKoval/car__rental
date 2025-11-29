@@ -4,7 +4,7 @@ import css from "./Button.module.css";
 interface ButtonProps {
   text: string;
   width: number;
-  onClick: () => void;
+  onClick?: () => void;
   type: "submit" | "button";
 }
 
