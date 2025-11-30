@@ -1,6 +1,6 @@
 "use client";
 
-import { useId } from "react";
+import { useId, useState } from "react";
 import css from "./FilterBar.module.css";
 import Button from "../ButtonLink/Button";
 import { Form, Formik, FormikHelpers } from "formik";
@@ -27,6 +27,7 @@ interface FilterBarProps {
 }
 
 const FilterBar = ({ onSearch }: FilterBarProps) => {
+  const [isClearable, setIsClearable] = useState(true);
   const fieldId = useId();
 
   const { data } = useQuery({
@@ -53,6 +54,7 @@ const FilterBar = ({ onSearch }: FilterBarProps) => {
             <Select
               name="brand"
               instanceId="brand"
+              isClearable={isClearable}
               options={data?.map((brand) => ({ value: brand, label: brand }))}
               placeholder="Choose a brand"
               value={
@@ -112,6 +114,7 @@ const FilterBar = ({ onSearch }: FilterBarProps) => {
             <Select
               name="price"
               instanceId="price"
+              isClearable={isClearable}
               options={[
                 { value: 30, label: 30 },
                 { value: 40, label: 40 },
@@ -186,6 +189,7 @@ const FilterBar = ({ onSearch }: FilterBarProps) => {
               <Select
                 name="mileageFrom"
                 instanceId="mileage-from"
+                isClearable={isClearable}
                 options={[
                   { value: 2000, label: "2,000" },
                   { value: 3000, label: "3,000" },
@@ -260,6 +264,7 @@ const FilterBar = ({ onSearch }: FilterBarProps) => {
               <Select
                 name="mileageTo"
                 instanceId="mileage-to"
+                isClearable={isClearable}
                 options={[
                   { value: 2000, label: "2,000" },
                   { value: 3000, label: "3,000" },
