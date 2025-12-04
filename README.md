@@ -38,14 +38,16 @@ http://localhost:3000
 
 
 🛠️ Tech Stack
- - ⚛️ React
- - ▲ Next.js
- - 🟦 TypeScript
- - 🎨 CSS Modules
+ - React
+ - Next.js
+ - TypeScript
+ - CSS Modules
 
 🚀 Demo
+
 https://car-rental-six-pink.vercel.app/
 
 👨‍💻 Author
+
 Denys Koval
 https://github.com/DDenysKoval
