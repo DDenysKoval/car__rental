@@ -6,7 +6,6 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 import css from "./CatalogDetails.module.css";
-import { Toaster } from "react-hot-toast";
 import { Metadata } from "next";
 
 interface Props {
