@@ -31,7 +31,6 @@ const CatalogDetailsPage = async ({ params }: Props) => {
     <section className={css.section}>
       <HydrationBoundary state={dehydrate(queryClient)}>
         <CatalogDetailsClient />
-        <Toaster position="top-center" reverseOrder={false} />
       </HydrationBoundary>
     </section>
   );

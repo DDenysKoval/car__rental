@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header/Header";
 import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
 import Footer from "@/components/Footer/Footer";
+import { Toaster } from "react-hot-toast";
 
 const manropeSans = Manrope({
   variable: "--font-manrope-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({
           {children}
           <Footer />
         </TanStackProvider>
+        <Toaster position="top-center" reverseOrder={false} />
       </body>
     </html>
   );
