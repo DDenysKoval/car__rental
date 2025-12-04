@@ -7,11 +7,11 @@ Users can browse available vehicles, filter them by different parameters, make b
 Administrators can manage the car fleet and reservations.
 
 ✨ Main Features
- - 🚘 View the list of available cars
- - 🔍 Search and filter cars by brand, price, mileage, and other parameters
- - 📅 Book a car for selected dates
- - ⭐ Add cars to a favorites list
- - ⚙️ Clean and fast UI powered by React + Next.js
+ - View the list of available cars
+ - Search and filter cars by brand, price, mileage, and other parameters
+ - Book a car for selected dates
+ - Add cars to a favorites list
+ - Clean and fast UI powered by React + Next.js
 
 📥 Installation
 
@@ -42,6 +42,9 @@ http://localhost:3000
  - ▲ Next.js
  - 🟦 TypeScript
  - 🎨 CSS Modules
+
+🚀 Demo
+https://car-rental-six-pink.vercel.app/
 
 👨‍💻 Author
 Denys Koval
