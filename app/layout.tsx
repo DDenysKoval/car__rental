@@ -3,6 +3,7 @@ import { Manrope } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header/Header";
 import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
+import Footer from "@/components/Footer/Footer";
 
 const manropeSans = Manrope({
   variable: "--font-manrope-sans",
@@ -12,6 +13,9 @@ const manropeSans = Manrope({
 export const metadata: Metadata = {
   title: "Rental Car",
   description: "Car Rent Service",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
@@ -25,6 +29,7 @@ export default function RootLayout({
         <TanStackProvider>
           <Header />
           {children}
+          <Footer />
         </TanStackProvider>
       </body>
     </html>

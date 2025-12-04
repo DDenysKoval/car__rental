@@ -2,6 +2,12 @@
   background-image: url("/Hero@1x.webp");
   background-repeat: no-repeat;
   background-position: center;
+  background-size: cover;
+  height: calc(100vh - 68px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 60px;
 }
 
 .heroWrapper {
@@ -9,7 +15,6 @@
   flex-direction: column;
   justify-content: center;
   margin: 0 auto;
-  padding: 440px 0 60px;
 }
 
 .title {

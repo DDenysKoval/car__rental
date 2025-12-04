@@ -132,7 +132,7 @@ const FilterBar = ({ onSearch }: FilterBarProps) => {
               onChange={(option) => setFieldValue("price", option?.value)}
               formatOptionLabel={(option, { context }) => {
                 if (context === "value") {
-                  return `To $${option.label}`; // додаємо кастомний текст/емодзі
+                  return `To $${option.label}`;
                 }
                 return option.label;
               }}
@@ -201,7 +201,7 @@ const FilterBar = ({ onSearch }: FilterBarProps) => {
                 placeholder="From"
                 formatOptionLabel={(option, { context }) => {
                   if (context === "value") {
-                    return `From ${option.label}km`; // додаємо кастомний текст/емодзі
+                    return `From ${option.label}km`;
                   }
                   return option.label;
                 }}
@@ -276,7 +276,7 @@ const FilterBar = ({ onSearch }: FilterBarProps) => {
                 placeholder="To"
                 formatOptionLabel={(option, { context }) => {
                   if (context === "value") {
-                    return `To ${option.label}km`; // додаємо кастомний текст/емодзі
+                    return `To ${option.label}km`;
                   }
                   return option.label;
                 }}

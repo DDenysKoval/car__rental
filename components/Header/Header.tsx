@@ -9,8 +9,8 @@ const Header = () => {
   const pathname = usePathname();
 
   return (
-    <header className={`container ${css.header}`}>
-      <nav className={css.navwrapper}>
+    <header className={css.header}>
+      <nav className={`container ${css.navwrapper}`}>
         <Link href="/">
           <svg width={104} height={16}>
             <use href="/Logo.svg"></use>

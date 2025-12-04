@@ -1,0 +1,32 @@
+.footerNormal {
+  background-color: #f2f4f7;
+  position: static;
+  color: #101828;
+  height: 68px;
+  display: flex;
+  justify-content: center;
+}
+
+.footer {
+  background-color: transparent;
+  font-size: 14px;
+  color: #f2f4f7;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: block;
+  width: 100%;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}

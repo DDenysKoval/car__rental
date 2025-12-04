@@ -36,8 +36,9 @@ const CatalogDetailsClient = () => {
         {data !== undefined ? (
           <div>
             <div className={css.carTitleinfoWrapper}>
-              <p className={css.span}>id: {data.id}</p>
-              <h1 className={css.carTitle}>{`${data.model}, ${data.year}`} </h1>
+              <h1 className={css.carTitle}>
+                {`${data.brand} ${data.model}, ${data.year}`}{" "}
+              </h1>
               <div className={css.addressWrapper}>
                 <p
                   className={css.carAddress}

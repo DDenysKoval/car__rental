@@ -16,7 +16,7 @@ const CatalogPageClient = () => {
   const [maxMileage, setMaxMileage] = useState(10000);
   const limit = 12;
 
-  const { data, isLoading, fetchNextPage, hasNextPage } =
+  const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
     useInfiniteQuery<AllCarsHttpResponse>({
       queryKey: ["cars", brand, rentalPrice, minMileage, maxMileage],
       queryFn: ({ pageParam = 1 }) =>
@@ -61,16 +61,23 @@ const CatalogPageClient = () => {
         ) : (
           <p className={css.empty}>Cars not found.</p>
         ))}
-      {!isLoading && hasNextPage && (
+      {hasNextPage && (
         <div className={css.buttonWrapper}>
-          <ButtonComp
-            text="Load more"
-            width={156}
-            type="button"
-            onClick={handleClick}
-          />
+          {isFetchingNextPage ? (
+            <div className={css.loaderWrapperLoadMore}>
+              <SyncLoader size={10} color={"#0b44cd"} />
+            </div>
+          ) : (
+            <ButtonComp
+              text="Load more"
+              width={156}
+              type="button"
+              onClick={handleClick}
+            />
+          )}
         </div>
       )}
+      ;
     </div>
   );
 };
